@@ -1,0 +1,3 @@
+author = SexuallyAttractiveFruitGroup
+version = 0.1
+displayName = Dota Mod
