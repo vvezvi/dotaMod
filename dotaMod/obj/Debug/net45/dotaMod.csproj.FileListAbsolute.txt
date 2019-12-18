@@ -1,0 +1,4 @@
+C:\Users\vvezvi\Documents\My Games\Terraria\ModLoader\Mod Sources\dotaMod\obj\Debug\net45\dotaMod.csprojAssemblyReference.cache
+C:\Users\vvezvi\Documents\My Games\Terraria\ModLoader\Mod Sources\dotaMod\obj\Debug\net45\dotaMod.csproj.CoreCompileInputs.cache
+C:\Users\vvezvi\Documents\My Games\Terraria\ModLoader\Mod Sources\dotaMod\obj\Debug\net45\dotaMod.AssemblyInfoInputs.cache
+C:\Users\vvezvi\Documents\My Games\Terraria\ModLoader\Mod Sources\dotaMod\obj\Debug\net45\dotaMod.AssemblyInfo.cs

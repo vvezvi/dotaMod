@@ -34,7 +34,7 @@ namespace dotaMod.Buffs
                         break;
                     }
                 }
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, ProjectileType<CagedInvoker>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 0f, ProjectileType<CagedInvoker>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
 
             }
             if (!modPlayer.invokerMinion)

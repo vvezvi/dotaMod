@@ -27,7 +27,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
             projectile.height = 32;
             projectile.friendly = true;
             projectile.minion = true;
-            projectile.minionSlots = 1;
+            projectile.minionSlots = 0;
             projectile.penetrate = -1;
             projectile.timeLeft = 18000;
             projectile.tileCollide = false;

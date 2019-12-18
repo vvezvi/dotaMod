@@ -32,6 +32,7 @@ namespace dotaMod
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff) {
 
+
             if (windrangerCapeMinion == true)
             {
 
