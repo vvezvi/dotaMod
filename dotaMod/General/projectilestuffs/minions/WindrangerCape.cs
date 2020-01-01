@@ -15,6 +15,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
         {
 
             DisplayName.SetDefault("Daedalus Arrow");     //The English name of the projectile
+            Main.projFrames[projectile.type] = 4;
 
         }
 
@@ -150,6 +151,17 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
                 }
 
+            }
+
+            //stay on each of the 4 frames for 20 ticks each.
+
+            if (++projectile.frameCounter >= 20)
+            {
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= 4)
+                {
+                    projectile.frame = 0;
+                }
             }
 
         }
