@@ -16,11 +16,17 @@ namespace dotaMod.General.projectilestuffs.minions
 		{
 			CheckActive();
 			Behavior();
+			ChooseFrame();
+			SpawnDust();
 		}
 
 		public abstract void CheckActive();
 
 		public abstract void Behavior();
+
+		public virtual void ChooseFrame() { }
+
+		public virtual void SpawnDust() { }
 
 	}
 

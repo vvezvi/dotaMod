@@ -50,11 +50,11 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
             targetY = player.position.Y - 200;
             selfX = projectile.position.X;
             selfY = projectile.position.Y;
-            Main.NewText("I have set targets: X=" + targetX + "Y=" + targetY + "selfX=" + selfX);
-            Main.NewText("My Velocity X=" + projectile.velocity.X + "Y=" + projectile.velocity.Y);
+            //Main.NewText("I have set targets: X=" + targetX + "Y=" + targetY + "selfX=" + selfX);
+            //Main.NewText("My Velocity X=" + projectile.velocity.X + "Y=" + projectile.velocity.Y);
             if (selfX < targetX)
             {
-                Main.NewText("I am larger");
+                //Main.NewText("I am larger");
                 projectile.spriteDirection = projectile.direction = 1;
                 if (projectile.velocity.X > (maxVel - velGain))
                 {
@@ -80,7 +80,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
             }
             else
             {
-                Main.NewText("I am smaller");
+                //Main.NewText("I am smaller");
                 projectile.spriteDirection = projectile.direction = -1;
                 if (projectile.velocity.X < (maxVel - velGain))
                 {
@@ -106,7 +106,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
             if (selfY < targetY)
             {
-                Main.NewText("I am high");
+                //Main.NewText("I am high");
                 if (projectile.velocity.Y > (maxVel - velGain))
                 {
 
@@ -130,7 +130,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
             }
             else
             {
-                Main.NewText("I am low");
+                //Main.NewText("I am low");
                 if (projectile.velocity.Y < (maxVel - velGain))
                 {
 
@@ -153,17 +153,6 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
             }
 
-            //stay on each of the 4 frames for 20 ticks each.
-
-            if (++projectile.frameCounter >= 20)
-            {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 4)
-                {
-                    projectile.frame = 0;
-                }
-            }
-
         }
 
         public override void CheckActive()
@@ -184,6 +173,20 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
             }
 
+        }
+            
+        //stay on each frame for 20 ticks, then cycle to next frame. 
+
+        public override void ChooseFrame()
+        {
+            if (++projectile.frameCounter >= 20)        
+            {
+                projectile.frameCounter = 0;
+                if (++projectile.frame >= 4)            
+                {
+                    projectile.frame = 0;
+                }
+            }
         }
 
     }
