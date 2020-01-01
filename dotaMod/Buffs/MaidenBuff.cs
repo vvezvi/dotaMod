@@ -7,13 +7,13 @@ using static Terraria.ModLoader.ModContent;
 namespace dotaMod.Buffs
 {
 
-    public class InvokerBuff : ModBuff
+    public class MaidenBuff : ModBuff
     {
 
         public override void SetDefaults() {
 
-            DisplayName.SetDefault("INVOKER!");
-            Description.SetDefault("QUAS WEX EXPORTS!");
+            DisplayName.SetDefault("CRYSTAL MAIDEN!");
+            Description.SetDefault("One day, I'll return to the Blueheart Glaciers, and sleep for a thousand years!");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false;
@@ -23,21 +23,21 @@ namespace dotaMod.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
-            if (player.ownedProjectileCounts[ProjectileType<General.projectilestuffs.minions.CagedInvoker>()] < 1)
+            if (player.ownedProjectileCounts[ProjectileType<General.projectilestuffs.minions.MaidenMinion>()] < 1)
             {
 
                 int k;
                 for (k = 3; k < 8 + player.extraAccessorySlots; k++)
                 {
-                    if (player.armor[k].type == ItemType<InvokerCage>())
+                    if (player.armor[k].type == ItemType<MaidenItem>())
                     {
                         break;
                     }
                 }
-                Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 0f, ProjectileType<CagedInvoker>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
+                Projectile.NewProjectile(player.Center.X + 200, player.Center.Y - 200, 0f, 0f, ProjectileType<MaidenMinion>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
 
             }
-            if (!modPlayer.invokerMinion)
+            if (!modPlayer.maidenMinionMinion)
             {
 
                 player.DelBuff(buffIndex);

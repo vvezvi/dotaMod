@@ -3,6 +3,7 @@ using dotaMod.General.accessories;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using static dotaMod.General.projectilestuffs.minions.WindrangerCape;
 
 namespace dotaMod.Buffs
 {
@@ -34,7 +35,7 @@ namespace dotaMod.Buffs
                         break;
                     }
                 }
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 0f, ProjectileType<WindrangerCape>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
+                Projectile.NewProjectile(player.Center.X - 200, player.Center.Y - 200, 0f, 0f, ProjectileType<WindrangerCape>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI); ;
 
             }
             if (!modPlayer.windrangerCapeMinion)
