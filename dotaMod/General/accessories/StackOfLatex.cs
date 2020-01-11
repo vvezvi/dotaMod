@@ -1,6 +1,4 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -8,22 +6,21 @@ using static Terraria.ModLoader.ModContent;
 namespace dotaMod.General.accessories
 {
 
-    class InvokerCage : ModItem
+    class StackOfLatex : ModItem
     {
         
         public override void SetStaticDefaults()
         {
 
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 6));
-            Tooltip.SetDefault("An Intricate cage designed to harness... Something.");
+            Tooltip.SetDefault("I came for ******, it'll be a good show!");
 
         }
         
         public override void SetDefaults()
         {
 
-            item.width = 36;
-            item.height = 36;
+            item.width = 32;
+            item.height = 30;
             item.accessory = true;
             item.value = Item.sellPrice(gold: 30);
             item.rare = ItemRarityID.LightPurple;
@@ -34,7 +31,7 @@ namespace dotaMod.General.accessories
         {
 
             dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
-            modPlayer.invokerMinion = true;
+            modPlayer.lunaMinion = true;
 
         }
 
