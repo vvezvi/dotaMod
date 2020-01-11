@@ -29,7 +29,7 @@ namespace dotaMod.Buffs
                 int k;
                 for (k = 3; k < 8 + player.extraAccessorySlots; k++)
                 {
-                    if (player.armor[k].type == ItemType<LunaSurfboard>())
+                    if (player.armor[k].type == ItemType<StackOfLatex>())
                     {
                         break;
                     }
