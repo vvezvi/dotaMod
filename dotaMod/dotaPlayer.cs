@@ -25,6 +25,7 @@ namespace dotaMod
         public bool lunaMinion;
         public bool invokerMinion;
         public bool maidenMinionMinion;
+        public bool axeMinion;
 
         public override void ResetEffects() {
 
@@ -32,6 +33,7 @@ namespace dotaMod
             lunaMinion = false;
             invokerMinion = false;
             maidenMinionMinion = false;
+            axeMinion = false;
 
         }
 
@@ -66,14 +68,14 @@ namespace dotaMod
 
             }
 
-            /*
+            
             if (axeMinion == true)
             {  
 
                 player.AddBuff(BuffType<Buffs.AxeBuff>(), 60, true);        //Worst hero
 
             }
-            */
+            
 
         }
 
