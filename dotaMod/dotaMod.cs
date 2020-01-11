@@ -28,7 +28,7 @@ namespace dotaMod
         {
 			if (!Main.dedServ)
             {
-				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Docking"), ItemType("LunaSurfboard"), TileType("DockingMusicBox"));
+				AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Docking"), ItemType("StackOfLatex"), TileType("DockingMusicBox"));
             }
         }
 	}
