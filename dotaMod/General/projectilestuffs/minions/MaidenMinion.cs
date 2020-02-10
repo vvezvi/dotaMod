@@ -9,7 +9,7 @@ using static Terraria.ModLoader.ModContent;
 namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME I LOVE YOU
 {
 
-    public class CagedInvoker : BaseMinion
+    public class MaidenMinion : BaseMinion
     {
 
         public override void SetStaticDefaults()
@@ -23,8 +23,8 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
         {
 
             projectile.netImportant = true;
-            projectile.width = 102;
-            projectile.height = 142;
+            projectile.width = 98;
+            projectile.height = 220;
             projectile.friendly = true;
             projectile.minion = true;
             projectile.minionSlots = 0;
@@ -163,10 +163,10 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
             if (player.dead)
             {
 
-                modPlayer.invokerMinion = false;
+                modPlayer.maidenMinionMinion = false;
 
             }
-            if (modPlayer.invokerMinion)
+            if (modPlayer.maidenMinionMinion)
             {
 
                 projectile.timeLeft = 2;
