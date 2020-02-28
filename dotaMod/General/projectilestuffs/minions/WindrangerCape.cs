@@ -11,11 +11,24 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
     public class WindrangerCape : BaseMinion
     {
+
+        public float velGain = 0.5f;
+        public float maxVel = 4;
+        public float yVelGain = 0.2f;
+        public float yMaxVel = 0.8f;
+        public float targetX;
+        public float targetY;
+        public float selfX;
+        public float selfY;
+        public float offset = 50;
+        public float xOffset = 75;
+        public bool initSelf = true;
+        public bool yInPos = false;
+        public bool xInPos = false;
         public override void SetStaticDefaults()
         {
 
             DisplayName.SetDefault("Daedalus Arrow");     //The English name of the projectile
-            Main.projFrames[projectile.type] = 4;
 
         }
 
@@ -38,23 +51,33 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
         public override void Behavior()
         {
 
-            float velGain = 0.5f;
-            float maxVel = 6;
-            float targetX;
-            float targetY;
-            float selfX;
-            float selfY;
+            var rand = new Random();
 
             Player player = Main.player[projectile.owner];
-            targetX = player.position.X - 200;
-            targetY = player.position.Y - 200;
             selfX = projectile.position.X;
             selfY = projectile.position.Y;
-            //Main.NewText("I have set targets: X=" + targetX + "Y=" + targetY + "selfX=" + selfX);
-            //Main.NewText("My Velocity X=" + projectile.velocity.X + "Y=" + projectile.velocity.Y);
-            if (selfX < targetX)
+            if (initSelf == true) {
+
+                targetX = player.position.X - 200;
+                targetY = player.position.Y - 200;
+                initSelf = false;
+
+            }
+            if ((targetX - xOffset) < selfX && selfX < (targetX + xOffset)) {
+
+                targetX = player.position.X - 200;
+
+            }
+            if ((targetY - offset) < selfX && selfY < (targetY + offset) && yInPos == false) {
+
+                targetY = player.position.Y - 200;
+
+            }
+
+            
+            if (selfX < (targetX + xOffset))
             {
-                //Main.NewText("I am larger");
+
                 projectile.spriteDirection = projectile.direction = 1;
                 if (projectile.velocity.X > (maxVel - velGain))
                 {
@@ -66,7 +89,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
                 {
 
                     projectile.spriteDirection = projectile.direction = -1;
-                    projectile.velocity.X += (velGain / 4);
+                    projectile.velocity.X += (velGain);
 
                 }
                 else
@@ -78,9 +101,8 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
 
             }
-            else
+            if(selfX > (targetX - xOffset))
             {
-                //Main.NewText("I am smaller");
                 projectile.spriteDirection = projectile.direction = -1;
                 if (projectile.velocity.X < (maxVel - velGain))
                 {
@@ -92,7 +114,7 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
                 {
 
                     projectile.spriteDirection = projectile.direction = 1;
-                    projectile.velocity.X -= (velGain / 4);
+                    projectile.velocity.X -= (velGain);
 
                 }
                 else
@@ -104,50 +126,74 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
             }
 
-            if (selfY < targetY)
+            if(yInPos == true)
             {
-                //Main.NewText("I am high");
-                if (projectile.velocity.Y > (maxVel - velGain))
+                if (projectile.velocity.Y > -0.2f && projectile.velocity.Y < 0.2f)
                 {
 
-                    projectile.velocity.Y = maxVel;
+                    projectile.velocity.Y = 0;
+                    yInPos = false;
+
+                }
+                else if (projectile.velocity.Y > 0) {
+
+                    projectile.velocity.Y -= (yVelGain*2);
+                
+                } else if (projectile.velocity.Y < 0) {
+
+                    projectile.velocity.Y += (yVelGain * 2);
+
+                }
+                
+
+            }
+            else if (selfY < (targetY + offset) && selfY > (targetY - offset))
+            {
+
+                yInPos = true;
+                
+
+            }else if (selfY < (targetY + offset)) {
+                
+                if (projectile.velocity.Y < (yMaxVel - yVelGain))
+                {
+
+                    projectile.velocity.Y = yMaxVel;
 
                 }
                 else if (projectile.velocity.Y < 0)
                 {
 
-                    projectile.velocity.Y += (velGain / 4);
+                    projectile.velocity.Y += (yVelGain);
 
                 }
                 else
                 {
 
-                    projectile.velocity.Y += velGain;
+                    projectile.velocity.Y += yVelGain;
 
                 }
 
 
             }
-            else
+            else if (selfY > (targetY - offset))
             {
-                //Main.NewText("I am low");
-                if (projectile.velocity.Y < (maxVel - velGain))
+                if (projectile.velocity.Y > (yMaxVel - yVelGain))
                 {
 
-                    projectile.velocity.Y = -maxVel;
+                    projectile.velocity.Y = -yMaxVel;
 
                 }
                 else if (projectile.velocity.Y > 0)
                 {
 
-                    projectile.spriteDirection = projectile.direction = 1;
-                    projectile.velocity.Y -= (velGain / 4);
+                    projectile.velocity.Y -= (yVelGain);
 
                 }
                 else
                 {
 
-                    projectile.velocity.Y -= velGain;
+                    projectile.velocity.Y -= yVelGain;
 
                 }
 
@@ -173,20 +219,6 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
 
             }
 
-        }
-            
-        //stay on each frame for 20 ticks, then cycle to next frame. 
-
-        public override void ChooseFrame()
-        {
-            if (++projectile.frameCounter >= 20)        
-            {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= 4)            
-                {
-                    projectile.frame = 0;
-                }
-            }
         }
 
     }
