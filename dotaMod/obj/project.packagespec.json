@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\vvezvi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\dotaMod\\dotaMod.csproj",
+    "projectName": "dotaMod",
+    "projectPath": "C:\\Users\\vvezvi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\dotaMod\\dotaMod.csproj",
+    "outputPath": "C:\\Users\\vvezvi\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\dotaMod\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "net45"
+    ],
+    "sources": {
+      "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "net45": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "net45": {
+      "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+    }
+  }
+}

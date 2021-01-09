@@ -18,7 +18,7 @@ namespace dotaMod.Tiles
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.addTile(Type);
 			disableSmartCursor = true;
-			ModTranslation name = CreateMapEntryName();
+			var name = CreateMapEntryName();
 			name.SetDefault("Music Box");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
@@ -28,7 +28,7 @@ namespace dotaMod.Tiles
 		}
 
 		public override void MouseOver(int i, int j) {
-			Player player = Main.LocalPlayer;
+			var player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.showItemIcon = true;
 			player.showItemIcon2 = ItemType<General.items.Placeable.DockingMusicBox>();

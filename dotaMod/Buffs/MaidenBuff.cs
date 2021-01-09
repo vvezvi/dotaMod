@@ -22,7 +22,7 @@ namespace dotaMod.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
+            DotaPlayer modPlayer = player.GetModPlayer<DotaPlayer>();
             if (player.ownedProjectileCounts[ProjectileType<General.projectilestuffs.minions.MaidenMinion>()] < 1)
             {
 
@@ -37,7 +37,7 @@ namespace dotaMod.Buffs
                 Projectile.NewProjectile(player.Center.X + 200, player.Center.Y - 200, 0f, 0f, ProjectileType<MaidenMinion>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
 
             }
-            if (!modPlayer.maidenMinionMinion)
+            if (!modPlayer.maidenMinionEquipped)
             {
 
                 player.DelBuff(buffIndex);
