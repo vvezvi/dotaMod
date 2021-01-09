@@ -22,8 +22,8 @@ namespace dotaMod.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
-            if (player.ownedProjectileCounts[ProjectileType<General.projectilestuffs.minions.LunaGlaiveSurfer>()] < 1)
+            DotaPlayer modPlayer = player.GetModPlayer<DotaPlayer>();
+            if (player.ownedProjectileCounts[ProjectileType<General.projectilestuffs.minions.LunaMinion>()] < 1)
             {
 
                 int k;
@@ -34,10 +34,10 @@ namespace dotaMod.Buffs
                         break;
                     }
                 }
-                Projectile.NewProjectile(player.Center.X + 400, player.Center.Y - 200, 0f, 0f, ProjectileType<LunaGlaiveSurfer>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
+                Projectile.NewProjectile(player.Center.X + 400, player.Center.Y - 200, 0f, 0f, ProjectileType<LunaMinion>(), player.GetWeaponDamage(player.armor[k]), player.GetWeaponKnockback(player.armor[k], 2f), player.whoAmI);
 
             }
-            if (!modPlayer.lunaMinion)
+            if (!modPlayer.lunaMinionEquipped)
             {
 
                 player.DelBuff(buffIndex);

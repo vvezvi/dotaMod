@@ -3,29 +3,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace dotaMod.NPCs.TownNPCs
 {
     [AutoloadHead]
     public class Windranger : ModNPC
-    {
-
-       public override void SetStaticDefaults()
-        {
-            //DisplayName automatically assigned from .lang files, but the commented line below is the normal approach.
-            //DisplayName.SetDefault("Lyralei");
-            Main.npcFrameCount[npc.type] = 25;
+    { 
+        public override void SetStaticDefaults(){
+                DisplayName.SetDefault("Lyralei");
+                Main.npcFrameCount[npc.type] = 25; 
         } 
 
         public override void SetDefaults()
         {
-
             npc.townNPC = true;
             npc.friendly = true;
             npc.width = 18;
             npc.height = 40;
-            npc.aiStyle = 7; //Maybe
+            npc.aiStyle = 7; //TODO Look into aiStyles, possible damage changes and sound changes
             npc.damage = 80;
             npc.defense = 80;
             npc.lifeMax = 250;
@@ -33,83 +28,55 @@ namespace dotaMod.NPCs.TownNPCs
             npc.DeathSound = SoundID.NPCDeath1;           
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
-
-            //This is the code that I added + 1 below
+            
+            //NPC custom changes
             NPCID.Sets.ExtraFramesCount[npc.type] = 9;
             NPCID.Sets.AttackFrameCount[npc.type] = 4;
-            NPCID.Sets.DangerDetectRange[npc.type] = 150; //this defines the npc danger detect range
+            NPCID.Sets.DangerDetectRange[npc.type] = 150; //Target Range
             NPCID.Sets.AttackType[npc.type] = 1; //this is the attack type,  0 (throwing), 1 (shooting), or 2 (magic). 3 (melee)
-            NPCID.Sets.AttackTime[npc.type] = 30; //this defines the npc attack speed
-            NPCID.Sets.AttackAverageChance[npc.type] = 30;//this defines the npc atack chance
-            NPCID.Sets.HatOffsetY[npc.type] = 4; //this defines the party hat position
-
+            //TODO Attack Type Enumeration
+            NPCID.Sets.AttackTime[npc.type] = 30; //Attack Speed
+            NPCID.Sets.AttackAverageChance[npc.type] = 30; //Attack Chance
+            NPCID.Sets.HatOffsetY[npc.type] = 4; //Party Hat Offset
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (npc.life <= 0)
-            {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger3"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger4"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger5"), 1f);
-            }
+        public override void HitEffect(int hitDirection, double damage){
+            if (npc.life < 0) return;
+            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger1"));
+            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger2"));
+            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger3"));
+            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger4"));
+            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Windranger5"));
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
-        {
-            for (int k = 0; k < 255; k++)
-            {
-                Player player = Main.player[k];
-                if (player.active)
-                {
-                    for (int j = 0; j < player.inventory.Length; j++)
-                    {
-                        if (player.inventory[j].type == mod.ItemType("Phoenix Feather") || player.inventory[j].type == mod.ItemType("Red Hair Strand"))
-                        {
-                            return true;
-                        }
-                    }
-                }
+        public override bool CanTownNPCSpawn(int numTownNpCs, int money){
+            for (var k = 0; k < 255; k++){ //Iterate through all active players and return true if the spawn item is found
+                var player = Main.player[k];
+                if (!player.active) return false;
+                if (player.inventory.Any(item => item.type == mod.ItemType("Phoenix Feather") 
+                                          || item.type == mod.ItemType("Red Hair Strand"))) return true;
             }
             return false;
         }
 
-
-        public override string TownNPCName()
-        {
-            switch (WorldGen.genRand.Next(2))
-            {
-                case 0:
-                    return "Lyralei";
-                default:
-                    return "Lyralei";
-            }
+        public override string TownNPCName(){
+            return DisplayName.GetDefault();
         }
 
         public override string GetChat()
         {
-            int mechanic = NPC.FindFirstNPC(NPCID.Mechanic);
-            if (mechanic >= 0 && Main.rand.Next(4) == 0)
-            {
+            var mechanic = NPC.FindFirstNPC(NPCID.Mechanic);
+            if (mechanic >= 0 && Main.rand.Next(4) == 0){
                 return "I really like " + Main.npc[mechanic].GivenName + "'s hair colour.";
             }
-            switch (Main.rand.Next(6))
-            {
-                case 0:
-                    return "You know your parents? Me neither.";
-                case 1:
-                    return "I can give you archery lessons if you'd like!";
-                case 2:
-                    return "I once shot an ant off a worm's backside, but only aimed to wound.";
-                case 3:
-                    return "Windranger at your service!";
-                case 4:
-                    return "I just kinda blew on into this town.";
-                default:
-                    return "Ever been to Zaru'Kina? No? Didn't think so..."; 
-            }
+            return Main.rand.Next(5) switch{
+                0 => "You know your parents? Me neither.",
+                1 => "I can give you archery lessons if you'd like!",
+                2 => "I once shot an ant off a worm's backside, but only aimed to wound.",
+                3 => "Windranger at your service!",
+                4 => "I just kinda blew on into this town.",
+                _ => "Ever been to Zaru'Kina? No? Didn't think so..."
+            };
         }
 
         public override void SetChatButtons(ref string button, ref string button2)

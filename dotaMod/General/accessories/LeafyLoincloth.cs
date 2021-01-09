@@ -30,8 +30,8 @@ namespace dotaMod.General.accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
 
-            dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
-            modPlayer.axeMinion = true;
+            DotaPlayer modPlayer = player.GetModPlayer<DotaPlayer>();
+            modPlayer.axeMinionEquipped = true;
 
         }
 

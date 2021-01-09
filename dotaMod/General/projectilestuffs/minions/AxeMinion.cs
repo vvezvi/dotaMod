@@ -159,14 +159,14 @@ namespace dotaMod.General.projectilestuffs.minions      //PLEASE DON'T DELETE ME
         {
 
             Player player = Main.player[projectile.owner];
-            dotaPlayer modPlayer = player.GetModPlayer<dotaPlayer>();
+            DotaPlayer modPlayer = player.GetModPlayer<DotaPlayer>();
             if (player.dead)
             {
 
-                modPlayer.axeMinion = false;
+                modPlayer.axeMinionEquipped = false;
 
             }
-            if (modPlayer.axeMinion)
+            if (modPlayer.axeMinionEquipped)
             {
 
                 projectile.timeLeft = 2;

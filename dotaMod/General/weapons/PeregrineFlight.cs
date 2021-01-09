@@ -9,7 +9,7 @@ namespace dotaMod.General.weapons
 	public class PeregrineFlight : ModItem
 	{
 
-        int bird = 8;
+        int _bird = 8;
 
 		public override void SetStaticDefaults()
 		{
@@ -57,12 +57,12 @@ namespace dotaMod.General.weapons
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
 
-            if(bird >= 8)//if the player has shot the bow X amount of times
+            if(_bird >= 8)//if the player has shot the bow X amount of times
             {
 
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("PeregrineFlightBird"), damage, knockBack, player.whoAmI);//Bird
 
-                bird = 0;
+                _bird = 0;
 
             }
             else
@@ -71,7 +71,7 @@ namespace dotaMod.General.weapons
 
                 Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);//Original Arrow
 
-                bird++;//increment the shot counter
+                _bird++;//increment the shot counter
 
             }
 
